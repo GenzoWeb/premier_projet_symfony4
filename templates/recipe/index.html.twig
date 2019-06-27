@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes recettes{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <h1>Bonjour {{ controller_name }} !</h1>
+
+    <h2>Présentation de mon site:</h2>
+    <p>
+        Voici mon nouveau site pour avoir mes recettes à porter d'écran !!!
+    </p>
+
+    <p>
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque esse eum adipisci provident. Amet odit quos, dolore tenetur exercitationem veritatis delectus nobis praesentium facere eaque consectetur! Dolorum, minus? Totam, esse.</span>
+        <br />
+        <span>Quos deleniti modi, doloribus repellendus sapiente sed cupiditate consectetur molestias quasi laudantium earum aliquam libero voluptas vitae quibusdam atque doloremque temporibus? Aspernatur corrupti aperiam adipisci vitae dolorem consequatur inventore quasi?</span>
+    </p>
+
+    <h2>Dernières recettes ajoutées</h2>
+
+    {% for recipe in recipes %}
+        <section>
+            <a href="{{ path('recipe_show', {'id': recipe.id}) }}"><h3>{{ recipe.name }}</h3></a>
+            <div class="content">
+                <img src="{{ recipe.image }}" alt="">
+                <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam odio ut incidunt nostrum, <br />
+                quidem provident voluptas sed optio adipisci voluptates distinctio? Recusandae, vero libero! Ipsum, <br />
+                facere nesciunt? Ipsum ad deserunt ullam, dolore rerum, fuga voluptatem quasi velit saepe, reprehenderit laborum?
+                </p>
+            </div>
+        </section>
+    {% endfor %}
+
+</div>
+{% endblock %}
