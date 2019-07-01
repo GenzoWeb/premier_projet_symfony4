@@ -34,7 +34,7 @@ class RecipeIngredient
     private $recipe;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Ingredient", mappedBy="recipeIngredient")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Ingredient", mappedBy="recipeIngredient", cascade={"persist"})
      */
     private $ingredients;
 
@@ -125,5 +125,14 @@ class RecipeIngredient
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        if(is_null($this->measured)) 
+        {
+            return 'NULL';
+        }
+        return $this->measured;
     }
 }

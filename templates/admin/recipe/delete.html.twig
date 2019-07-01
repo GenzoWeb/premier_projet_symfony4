@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ recipe.name }}{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <h1>{{ recipe.name }}</h1>
+    <div class= "container">
+        <img src="{{ recipe.image }}" alt="">
+        <h2>Ingrédients</h2>
+
+        {# <ul> #}
+            {# {% for ingredient in ingredientArray %} #}
+                {# <li>               #}
+                    {# {{ ingredient.quantity }} {{ ingredient.measured }} {{ ingredient[0].name }} #}
+                {# </li> #}
+            {# {% endfor %} #}
+        {# </ul> #}
+        <ul>
+            {% set i = 0 %}
+            {% for ingredient in recipe.recipeIngredients %}
+                <li>              
+                    {{ ingredient.quantity }} {{ ingredient.measured }} {{ ingredientArray[i].name }}
+                </li>
+                {% set i = i + 1 %}
+            {% endfor %}
+        </ul>
+        
+        <h2>Préparation</h2>
+
+        {% for step in recipe.steps %}
+            <h6>Etape {{ loop.index }}</h6>
+            <p>{{ step.description }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

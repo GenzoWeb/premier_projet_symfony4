@@ -30,6 +30,17 @@ class IngredientRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    public function findIdIngredient($recipeIngredient)
+    {
+        return $this->createQueryBuilder('i')
+        ->join('i.recipeIngredient', 'n')
+        ->select('i.id')
+        ->where('n.id = :rId')
+        ->setParameter('rId', $recipeIngredient)
+        ->getQuery()
+        ->getResult();
+    }
+
         //     return $this->createQueryBuilder('r')
         // ->join('r.recipeIngredients', 'i')
         // // ->select('COUNT(r)')

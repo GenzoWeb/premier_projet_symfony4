@@ -33,7 +33,7 @@ class Recipe{
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Step", mappedBy="steps", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Step", mappedBy="steps", orphanRemoval=true, cascade={"persist"})
      */
     private $steps;
 
@@ -44,7 +44,7 @@ class Recipe{
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\RecipeIngredient", mappedBy="recipe")
+     * @ORM\ManyToMany(targetEntity="App\Entity\RecipeIngredient", mappedBy="recipe", cascade={"persist"})
      */
     private $recipeIngredients;
 
@@ -166,4 +166,10 @@ class Recipe{
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
 }
