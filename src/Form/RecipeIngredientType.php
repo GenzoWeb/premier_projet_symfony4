@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RecipeIngredientType extends AbstractType
@@ -30,6 +29,19 @@ class RecipeIngredientType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
+            // ->add('ingredientName', EntityType::class, [
+            //     'class' => IngredientName::class,
+            //     'choice_label' => 'name',
+            // ])
+            // ->add('ingredientName', TextType::class , [
+            //     'label' => 'Nom de la recette'
+            // ])
+            // ->add('ingredientName', CollectionType::class, [
+            //         'entry_type' => IngredientName::class,
+            //         'allow_add' => true,
+            //         'allow_delete' => true,
+            //         'by_reference' => false
+            //     ])
         ;
     }
 

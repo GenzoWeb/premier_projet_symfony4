@@ -11,6 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
@@ -22,8 +23,11 @@ class RecipeType extends AbstractType
             ->add('name', TextType::class , [
                 'label' => 'Nom de la recette'
             ])
-            ->add('image')
-            // ->add('createdAt')
+            ->add('imageFile', FileType::class, [
+                'required' => false,
+                'label' => 'Image'
+            ])
+            // ->add('createdAt')            
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',

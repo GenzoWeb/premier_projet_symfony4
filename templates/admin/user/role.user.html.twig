@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification rôle{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Gérer les rôles des utilisateurs</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Rôle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>
+                            {% if user.roles[0] == "ROLE_ADMIN" %}
+                                Admin
+                            {% elseif user.roles[0] == "ROLE_USER"%}
+                                Utilisateur
+                            {% elseif user.roles[0] == "ROLE_SUPER_ADMIN"%}
+                                Super admin
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('admin.user.edit', {id: user.id}) }}" class="btn btn-danger">Modifier</a>  
+                            {# <a href="" class="btn btn-danger">Modifier</a>   #}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

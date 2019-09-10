@@ -11,3 +11,14 @@
 
 </div>
 {% endblock %}
+
+
+{# A METTRE DANS LE CSS POUR QU'IL LE FASSE AVANT LE CHARGEMENT DE LA PAGE #}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            //$("#leg legend:contains('0')").html("");
+            $("#leg legend").css("display","none");
+        })
+    </script>
+{% endblock %}

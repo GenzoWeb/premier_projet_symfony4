@@ -2,12 +2,22 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RecipeRepository")
+ * @UniqueEntity(
+ *  "name",
+ *   message="Le nom de la recette existe déjà."
+ * )
+ * @Vich\Uploadable
  */
 class Recipe{
     /**
@@ -19,13 +29,29 @@ class Recipe{
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min=3, 
+     *      max=255,
+     *      minMessage = "Le nom de la recette est trop court",
+     *      maxMessage = "Le nom de la recette est trop long"
+     * )
      */
     private $name;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image;
+    private $filename;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="recipe_image", fileNameProperty="filename")
+     * @Assert\Image(
+     *      mimeTypes={"image/jpeg"}
+     * )
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="datetime")
@@ -34,6 +60,7 @@ class Recipe{
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Step", mappedBy="steps", orphanRemoval=true, cascade={"persist"})
+     * 
      */
     private $steps;
 
@@ -45,14 +72,27 @@ class Recipe{
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\RecipeIngredient", mappedBy="recipe", cascade={"persist"})
+     * @Assert\Valid
      */
     private $recipeIngredients;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="recipe", orphanRemoval=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     public function __construct()
     {
         $this->steps = new ArrayCollection();
+        // s'en sert pas categories
         $this->categories = new ArrayCollection();
         $this->recipeIngredients = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,18 +108,6 @@ class Recipe{
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }
@@ -172,4 +200,100 @@ class Recipe{
         return $this->name;
     }
 
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getRecipe() === $this) {
+                $comment->setRecipe(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of filename
+     *
+     * @return  string|null
+     */ 
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Set the value of filename
+     *
+     * @param  string|null  $filename
+     *
+     * @return  self
+     */ 
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageFile
+     *
+     * @return  File|null
+     */ 
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @param  File|null  $imageFile
+     *
+     * @return  self
+     */ 
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+        
+        if ($this->imageFile instanceof UploadedFile) 
+        {
+            $this->updatedAt = new \DateTime('now');
+        }
+        
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
 }

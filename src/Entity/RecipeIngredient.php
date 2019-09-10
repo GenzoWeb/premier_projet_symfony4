@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RecipeIngredientRepository")
@@ -19,7 +20,12 @@ class RecipeIngredient
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Regex(
+     *     pattern="/[a-z]/",
+     *     match=false,
+     *     message="Veuillez rentrer un rentrer une valeur numérique ou par exemple 1/2"
+     * )
      */
     private $quantity;
 
@@ -35,6 +41,7 @@ class RecipeIngredient
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Ingredient", mappedBy="recipeIngredient", cascade={"persist"})
+     * @Assert\Valid
      */
     private $ingredients;
 
@@ -49,12 +56,12 @@ class RecipeIngredient
         return $this->id;
     }
 
-    public function getQuantity(): ?int
+    public function getQuantity(): ?string
     {
         return $this->quantity;
     }
 
-    public function setQuantity(?int $quantity): self
+    public function setQuantity(?string $quantity): self
     {
         $this->quantity = $quantity;
 
@@ -126,7 +133,7 @@ class RecipeIngredient
 
         return $this;
     }
-
+    
     public function __toString()
     {
         if(is_null($this->measured)) 

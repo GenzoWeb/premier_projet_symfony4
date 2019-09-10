@@ -19,27 +19,27 @@ class IngredientRepository extends ServiceEntityRepository
         parent::__construct($registry, Ingredient::class);
     }
 
-    public function findNameIngredient($recipe)
-    {
-        return $this->createQueryBuilder('i')
-        ->join('i.recipeIngredient', 'n')
-        ->select('i.name')
-        ->where('n.id = :rId')
-        ->setParameter('rId', $recipe)
-        ->getQuery()
-        ->getResult();
-    }
+    // public function findIdIngredient($recipeIngredient)
+    // {
+    //     return $this->createQueryBuilder('i')
+    //     ->join('i.recipeIngredient', 'n')
+    //     ->select('i.id')
+    //     ->where('n.id = :rId')
+    //     ->setParameter('rId', $recipeIngredient)
+    //     ->getQuery()
+    //     ->getResult();
+    // }
 
-    public function findIdIngredient($recipeIngredient)
-    {
-        return $this->createQueryBuilder('i')
-        ->join('i.recipeIngredient', 'n')
-        ->select('i.id')
-        ->where('n.id = :rId')
-        ->setParameter('rId', $recipeIngredient)
-        ->getQuery()
-        ->getResult();
-    }
+    // public function findTestName($id)
+    // {
+    //     return $this->createQueryBuilder('i')
+    //     ->join('i.recipeIngredient', 'n')
+    //     ->select('i.name')
+    //     ->where('n.id = :rId')
+    //     ->setParameter('rId', $id)
+    //     ->getQuery()
+    //     ->getResult();
+    // }
 
         //     return $this->createQueryBuilder('r')
         // ->join('r.recipeIngredients', 'i')

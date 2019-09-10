@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Recipe;
+use Doctrine\ORM\Query;
+use App\Entity\RecipeSearch;
 use Doctrine\ORM\Query\Expr\Join;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -23,7 +25,7 @@ class RecipeRepository extends ServiceEntityRepository
     /**
      * @return Recipe[]
      */
-    public function findLatest() :array
+    public function findLatest() : array
     {
         return $this->createQueryBuilder('r')
             ->setMaxResults(4)
@@ -33,6 +35,51 @@ class RecipeRepository extends ServiceEntityRepository
         ;        
     }
 
+    /**
+     * @return Query
+     */
+    public function findAllQuery(RecipeSearch $search) : Query
+    {
+        $query = $this->createQueryBuilder('r');   
+
+        if($search->getNameRecipe())
+        {
+            $query = $query
+                ->andWhere("r.name LIKE :nameRecipe")
+                ->setParameter('nameRecipe', '%' . $search->getNameRecipe() . '%');
+        }
+
+        if($search->getIngredient())
+        {
+            $query = $query
+                ->join('r.recipeIngredients', 'rI')
+                ->join('rI.ingredients', 'i')
+                ->andWhere("i.name LIKE :ingredient")
+                ->setParameter('ingredient', '%' . $search->getIngredient() . '%');
+        }
+
+        if($search->getNameCategory())
+        {
+            $query = $query
+                ->join('r.category', 'c')
+                ->andWhere("c.id = :nameCategory")
+                ->setParameter('nameCategory', $search->getNameCategory());
+        }
+
+        return $query->getQuery();
+    }
+
+    public function findByCategory($category)
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.category', 'c')
+            ->andWhere("c.name = :cat")
+            ->setParameter('cat', $category)
+            ->getQuery()
+            ->getResult()
+        ;         
+    }
+    
     // /**
     //  * @return Recipe[] Returns an array of Recipe objects
     //  */

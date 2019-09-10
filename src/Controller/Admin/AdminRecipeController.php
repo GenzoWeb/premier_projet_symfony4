@@ -36,7 +36,8 @@ class AdminRecipeController extends AbstractController
 
         return $this->render('admin/recipe/index.html.twig', [
             'controller_name' => 'Isaline',
-            'recipes' => $recipes
+            'recipes' => $recipes,
+            'current_menu' => 'admin'
         ]);
     }
 
@@ -53,6 +54,13 @@ class AdminRecipeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $numberSteps = count($recipe->getSteps());     
+ 
+            for($i = 0; $i < $numberSteps; $i++)
+            {
+                $recipe->getSteps()[$i]->setNumberStep($i + 1);
+            }
+
             $recipe->setCreatedAt(new \DateTime());
             $this->em->persist($recipe);
             $this->em->flush();
@@ -62,7 +70,8 @@ class AdminRecipeController extends AbstractController
 
         return $this->render('admin/recipe/new.html.twig', [
             'recipe' => $recipe,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'current_menu' => 'admin'
         ]);
     }
 
@@ -71,27 +80,18 @@ class AdminRecipeController extends AbstractController
      */
     public function delete(Recipe $recipe, Request $request)
     {
-        //récupération des id pour les recipe_ingredient correspondant à la recette
-        $recipeIngredients = $this->recipeIngredientRepo->findIdRecipeIngredient($recipe);
-
-        $numberIngredient = count($recipeIngredients);
-
-        $recipeIngredientArray = [];
-        $ingredientArray = [];
         
         if ($this->isCsrfTokenValid('delete' . $recipe->getId(), $request->get('_token')))
         {
-            for( $i = 0; $i < $numberIngredient; $i++)
+            foreach($recipe->getRecipeIngredients() as $recipeIngredient) 
             {
-                $recipeIngredientsRemove = $this->recipeIngredientRepo->findById($recipeIngredients[$i]['id']);
-                $ingredient = $this->ingredientRepo->findIdIngredient($recipeIngredients[$i]['id']);
-                $ingredientRemove = $this->ingredientRepo->findById($ingredient[0]['id']);
-
-                array_push($recipeIngredientArray, $recipeIngredientsRemove[0]);
-                array_push($ingredientArray, $ingredientRemove[0]);
-                $this->em->remove($recipeIngredientArray[$i]);
-                $this->em->remove($ingredientArray[$i]);
+                foreach($recipeIngredient->getIngredients() as $ingredient) 
+                {
+                    $this->em->remove($ingredient);
+                }
+                $this->em->remove($recipeIngredient);
             }
+              
             $this->em->remove($recipe);      
             $this->em->flush();
             $this->addflash('success', 'Recette supprimée avec succés');
@@ -111,14 +111,16 @@ class AdminRecipeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $recipe->setUpdatedAt(new \DateTime());
             $this->em->flush();
             $this->addflash('success', 'Recette modifiée avec succés');
             return $this->redirectToRoute('admin.recipe.index');
         }
-
+        
         return $this->render('admin/recipe/edit.html.twig', [
             'recipe' => $recipe,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'current_menu' => 'admin'
         ]);
     }
 }

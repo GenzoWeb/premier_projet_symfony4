@@ -6,6 +6,7 @@ use App\Entity\Step;
 use App\Entity\Recipe;
 use App\Entity\Category;
 use App\Entity\Ingredient;
+use App\Entity\IngredientName;
 use App\Entity\RecipeIngredient;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -29,14 +30,12 @@ class RecipeFixtures extends Fixture
         $category2->setName('desserts');
         $manager->persist($category2);
 
-
         //Création de 10 recettes (fakées)
         for ( $j = 1; $j <= 10; $j++)
         {
 
             $recipe = new Recipe();
-            $recipe ->setName($faker->sentence())                                             
-                    ->setImage($faker->imageUrl())
+            $recipe ->setName($faker->sentence())
                     ->setCreatedAt($faker->dateTimeBetween('-6 months'))
                     ->setCategory($category);
             
@@ -58,6 +57,8 @@ class RecipeFixtures extends Fixture
 
                 $manager->persist($recipe);
                 $manager->persist($ingredient);
+
+                
             }
 
                 // $recipe = new Recipe();

@@ -18,7 +18,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-4">{{ form_row(form.category) }}</div>
-                    <div class="col-md-4">{{ form_row(form.image) }}</div>
+                    <div class="col-md-5">{{ form_row(form.imageFile) }}</div>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
                 {% endfor %}
             </div>
         </div> #}
-        {{ form_rest(form) }}
+        {# {{ form_rest(form) }} #}
         {# {{ dump(form) }} #}
         <a href="#" id="add_ingredient" class="btn btn-primary">Ajouter ingrédient</a>
         {# <br />
