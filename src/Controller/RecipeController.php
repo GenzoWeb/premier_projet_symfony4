@@ -36,13 +36,33 @@ class RecipeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function index(Request $request)
     {
+        
+        $search = new RecipeSearch();
+        $form = $this->createForm(RecipeSearchType::class, $search);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nameCategory = $search->getNameCategory();
+            $categoryId = null;
+            if(!is_null($nameCategory)){
+                $categoryId = $nameCategory->getId();
+            }
+           
+            return $this->redirect($this->generateUrl('recipes', [
+                'nameRecipe' => $search->getNameRecipe(),
+                'ingredient' => $search->getIngredient(),
+                'nameCategory' => $categoryId
+            ]));
+        }
+
         $recipes = $this->recipeRepo->findLatest();
 
         return $this->render('recipe/index.html.twig', [
             'controller_name' => 'Isaline',
-            'recipes' => $recipes
+            'recipes' => $recipes,
+            'form'    => $form->createView()
         ]);
     }
         
@@ -61,6 +81,7 @@ class RecipeController extends AbstractController
             $request->query->getInt('page', 1),
             4
         );
+
         return $this->render('recipe/recipes.html.twig', [
             'recipes' => $recipes,
             'form'    => $form->createView(),
