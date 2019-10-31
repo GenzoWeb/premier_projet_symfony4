@@ -4,65 +4,54 @@
 
 {% block body %}
 
-<div class="jumbotron">
-    <div class="container">
-        {{ form_start(form) }}
-        <div class="form-row">
-            <div class="col">
-                {{ form_row(form.nameRecipe) }}
-            </div>
-            <div class="col">
-                {{ form_row(form.ingredient) }}
-            </div>
-            <div class="col">
-                {{ form_row(form.nameCategory) }}
-            </div>            
-            <div class="col">
-                <button class="btn btn-primary">Rechercher</button>
-            </div>  
-        </div>          
-        {{ form_end(form) }}
+<section>
+    <img id="image-home" src="/images/recipes/home.jpg" alt="" >
+    <div id="div-search">
+        <div id="search-recipe">
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.nameRecipe) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.ingredient) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.nameCategory) }}
+                </div>            
+                <div class="button-search">
+                    <button class="btn btn-primary">Rechercher</button>
+                </div>  
+            </div>          
+            {{ form_end(form) }}
+        </div>
     </div>
-</div>
+</section>
 
-<div class="container mt-4">
-    {% for message in app.flashes('success') %}
+<section class="container mt-4">
+    {# {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
         </div>
     {% endfor %}
+    #}
 
-    <h2>Présentation de mon site :</h2>
-    <p>
-        Voici mon nouveau site pour avoir mes recettes à porter d'écran !!!
-    </p>
-
-    <p>
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque esse eum adipisci provident. Amet odit quos, dolore tenetur exercitationem veritatis delectus nobis praesentium facere eaque consectetur! Dolorum, minus? Totam, esse.</span>
-        <br />
-        <span>Quos deleniti modi, doloribus repellendus sapiente sed cupiditate consectetur molestias quasi laudantium earum aliquam libero voluptas vitae quibusdam atque doloremque temporibus? Aspernatur corrupti aperiam adipisci vitae dolorem consequatur inventore quasi?</span>
-    </p>
-
-    <h2>Dernières recettes ajoutées</h2>
-
-    {% for recipe in recipes %}
-        <section>
-            <a href="{{ path('recipe_show', {'id': recipe.id}) }}"><h3>{{ recipe.name }}</h3></a>
-            <div class="content">
-                {% if recipe.filename %}
-                    {# <img src="/images/recipes/{{ recipe.filename }}" alt="" Mettre du css ou faire du css>  #}
-                    <img src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="" {# Mettre du css ou faire du css #}> 
-                {% else %}
-                    <img src="/images/recipes/{{ recipe.category.name|replace({'entrées': 'entrees'}) }}.jpg" alt="">
-                {% endif %}
-                <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam odio ut incidunt nostrum, <br />
-                quidem provident voluptas sed optio adipisci voluptates distinctio? Recusandae, vero libero! Ipsum, <br />
-                facere nesciunt? Ipsum ad deserunt ullam, dolore rerum, fuga voluptatem quasi velit saepe, reprehenderit laborum?
-                </p>
+    <h2 class="title-home">Dernières recettes ajoutées</h2>
+        <div class="last-recipes">
+        {% for recipe in recipes %}
+            <div class="block-recipe-home">
+                <a class="title-recipe-home" href="{{ path('recipe_show', {'id': recipe.id}) }}"><h3>{{ recipe.name }}</h3></a>
+                <div class="image-last-recipes">
+                    <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
+                        {% if recipe.filename %}
+                            <img src="{{ vich_uploader_asset(recipe, 'imageFile') | imagine_filter('miniature') }}" alt="" > 
+                        {% else %}
+                            <img class="miniature-img" src="/images/recipes/{{ recipe.category.name | replace({'entrées': 'entrees' }) }}.jpg" alt="">
+                        {% endif %}
+                    </a>
+                </div>
             </div>
-        </section>
-    {% endfor %}
-
-</div>
+        {% endfor %}
+        </div>
+</section>
 {% endblock %}
