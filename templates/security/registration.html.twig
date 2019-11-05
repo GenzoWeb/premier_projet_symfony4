@@ -4,8 +4,8 @@
 
 {% block body %}
 
-    <div class="container mt-4">
-        <h1>Inscription</h1>
+    <div class="container mt-4 registration">
+        <h1 class="title-center">Inscription</h1>
         {{ form_start(form) }}
             {{ form_row(form.username, {'label': 'Nom d\'utilisateur', 'attr': {'placeholder': 'Nom d\'utilisateur ...'}}) }}
             {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'placeholder': 'Mot de passe ...'}}) }}

@@ -15,6 +15,19 @@
     opacity: inherit !important;
 }
 
+#footer-recipe
+{
+    width: 100%;
+    height: 100px;
+    background-color: black;
+}
+
+/* TOOLBAR SYMFONY */
+.sf-toolbar    
+{
+    display: none !important;
+}
+
             /*************************************************** ACCUEIL ( index.html.twig ) ***************************************************/
 
 #menu-list
@@ -48,32 +61,49 @@
     margin-right: 0;
 }
 
-#search-recipe .button-search
+#search-recipe .button-search, .container-search .button-search
 {
     padding-left: 5px;
     padding-right: 5px;
 }
 
-.title-home
+/***** LISTE DES RECETTES *****/
+
+.title-center
 {
     margin-bottom: 20px;
 }
 
-.title-home, .title-recipe-home
+.title-center, .title-recipe-list
 {
     text-align: center;
 }
 
-.last-recipes
+.title-recipe-list p
+{
+    font-weight: bold;
+}
+
+.list-recipes
 {
     display: flex;
     flex-wrap: wrap;
 }
 
-.block-recipe-home
+.block-recipe-list
 {
     width: 360px;
     margin: 20px auto;
+}
+
+.image-list-recipes
+{
+    margin-right: 10px;
+}
+
+.image-list-recipes :hover
+{
+    opacity: 0.8;
 }
 
 .miniature-img
@@ -82,24 +112,55 @@
     height: 230px;
 }
 
-.image-last-recipes
+/***** FIN LISTE DES RECETTES *****/
+
+.pagination nav
 {
-    margin-right: 10px;
+    margin: auto;
 }
 
-.image-last-recipes :hover
+            /************************************************* FIN ACCUEIL ( index.html.twig ) *************************************************/
+
+
+            /********************************************** LISTE RECETTES ( recipes.html.twig ) ***********************************************/
+
+.jumbotron
 {
-    opacity: 0.8;
+    margin-bottom: 0 !important;
 }
 
-            /***********************************************************************************************************************************/
-
-
-
-
-#footer-recipe
+.recipes
 {
-    width: 100%;
-    height: 100px;
-    background-color: black;
+    min-height: calc(100vh - 338px); /* footer de 100px pour le moment */
+} 
+
+            /******************************************** FIN LISTE RECETTES ( recipes.html.twig ) *********************************************/
+
+
+            /************************************************* CATEGORIE ( category.html.twig ) ************************************************/
+
+.category
+{
+    min-height: calc(100vh - 156px); /* footer de 100px pour le moment */
 }
+
+            /*********************************************** FIN CATEGORIE ( category.html.twig ) **********************************************/
+
+            /**************************************************** RECETTE ( show.html.twig ) ***************************************************/
+
+.comments
+{
+    font-style: italic;
+}
+
+            /************************************************** FIN RECETTE ( show.html.twig ) *************************************************/
+
+
+            /**************************************************** LOGIN ( login.html.twig ) ****************************************************/
+
+.login, .registration
+{
+    min-height: calc(100vh - 180px); /* footer de 100px pour le moment */
+}
+
+            /************************************************** FIN LOGIN ( login.html.twig ) **************************************************/

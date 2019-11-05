@@ -1,0 +1,16 @@
+<div class="list-recipes">
+    {% for recipe in recipes %}
+        <div class="block-recipe-list">
+            <a class="title-recipe-list" href="{{ path('recipe_show', {'id': recipe.id}) }}"><p>{{ recipe.name }}</p></a>
+            <div class="image-list-recipes">
+                <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
+                    {% if recipe.filename %}
+                        <img class="miniature-img" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="" > 
+                    {% else %}
+                        <img class="miniature-img" src="/images/recipes/{{ recipe.category.name | replace({'entrées': 'entrees' }) }}.jpg" alt="">
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

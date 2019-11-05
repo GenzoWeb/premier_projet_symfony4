@@ -4,7 +4,10 @@
 
 {% block body %}
 
-    <div class="container mt-4">
+    <div class="container mt-4 login">
+            <p class="title-center">
+                <a href="{{ path('registration') }}">Pas encore de compte? Inscription ici</a>
+            </p>
 
         {% if error %}
             <div class="alert alert-danger">{{ error.message|trans({'Bad credentials': 'Login ou mot de passe incorrect'}) }}</div>
@@ -25,9 +28,6 @@
             {% endif %}
             <button type="submit" class="btn btn-primary">Se connecter</button>
         </form>
-    </div>
-    <div class="container mt-4">
-        <a href="{{ path('registration') }}" class="btn btn-primary">S'enregistrer</a>
     </div>
 
 {% endblock %}

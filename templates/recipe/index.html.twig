@@ -4,54 +4,24 @@
 
 {% block body %}
 
-<section>
-    <img id="image-home" src="/images/recipes/home.jpg" alt="" >
-    <div id="div-search">
-        <div id="search-recipe">
-            {{ form_start(form) }}
-            <div class="form-row">
-                <div class="col">
-                    {{ form_row(form.nameRecipe) }}
-                </div>
-                <div class="col">
-                    {{ form_row(form.ingredient) }}
-                </div>
-                <div class="col">
-                    {{ form_row(form.nameCategory) }}
-                </div>            
-                <div class="button-search">
-                    <button class="btn btn-primary">Rechercher</button>
-                </div>  
-            </div>          
-            {{ form_end(form) }}
+    <section>
+        <img id="image-home" src="/images/recipes/home.jpg" alt="" >
+        <div id="div-search">
+            <div id="search-recipe">
+                {{ include('recipe/_searchRecipes.html.twig') }}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="container mt-4">
-    {# {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-    #}
-
-    <h2 class="title-home">Dernières recettes ajoutées</h2>
-        <div class="last-recipes">
-        {% for recipe in recipes %}
-            <div class="block-recipe-home">
-                <a class="title-recipe-home" href="{{ path('recipe_show', {'id': recipe.id}) }}"><h3>{{ recipe.name }}</h3></a>
-                <div class="image-last-recipes">
-                    <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
-                        {% if recipe.filename %}
-                            <img src="{{ vich_uploader_asset(recipe, 'imageFile') | imagine_filter('miniature') }}" alt="" > 
-                        {% else %}
-                            <img class="miniature-img" src="/images/recipes/{{ recipe.category.name | replace({'entrées': 'entrees' }) }}.jpg" alt="">
-                        {% endif %}
-                    </a>
-                </div>
+    <section class="container mt-4">
+        {# {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
             </div>
         {% endfor %}
-        </div>
-</section>
+        #}
+        <h1 class="title-center">Dernières recettes ajoutées</h1>
+        {{ include('recipe/_listRecipes.html.twig') }}
+    </section>
+
 {% endblock %}

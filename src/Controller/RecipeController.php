@@ -79,7 +79,7 @@ class RecipeController extends AbstractController
         $recipes = $paginator->paginate(
             $this->recipeRepo->findAllQuery($search),
             $request->query->getInt('page', 1),
-            4
+            6
         );
 
         return $this->render('recipe/recipes.html.twig', [
@@ -114,7 +114,7 @@ class RecipeController extends AbstractController
         }
 
 
-        return $this->render('recipe/search.html.twig', [
+        return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
             'commentForm' => $form->createView(),
         ]);

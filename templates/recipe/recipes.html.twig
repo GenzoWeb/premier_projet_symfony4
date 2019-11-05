@@ -4,54 +4,23 @@
 
 {% block body %}
 
-<div class="jumbotron">
-    <div class="container">
-        {{ form_start(form) }}
-        <div class="form-row">
-            <div class="col">
-                {{ form_row(form.nameRecipe) }}
-            </div>
-            <div class="col">
-                {{ form_row(form.ingredient) }}
-            </div>
-            <div class="col">
-                {{ form_row(form.nameCategory) }}
-            </div>            
-            <div class="col">
-                <button class="btn btn-primary">Rechercher</button>
-            </div>  
-        </div>          
-        {{ form_end(form) }}
+    <div class="jumbotron">
+        <div class="container container-search">
+            {{ include('recipe/_searchRecipes.html.twig') }}
+        </div>
     </div>
-</div>
 
-<div class="container mt-4">
+    <div class="container recipes">
+        {% if not recipes.items %}
+            <p>Il n'y a pas de recette qui correspond à votre recherche</p>
+        {% else %}
+            <h1 class="title-center">Recette{% if recipes.items| length > 1 %}s{% endif %}</h1>
+            {{ include('recipe/_listRecipes.html.twig') }}
+        {% endif %}
 
-    {% if not recipes.items %}
-        <p>Il n'y a pas de recette qui correspond à votre recherche</p>
-    {% else %}
-        <h1>Recette{% if recipes.items| length > 1 %}s{% endif %}</h1>
-        {% for recipe in recipes %}
-            <section>
-                <a href="{{ path('recipe_show', {'id': recipe.id}) }}"><h3>{{ recipe.name }}</h3></a>
-                <div class="content">
-                    {% if recipe.filename %}
-                        {# <img src="/images/recipes/{{ recipe.filename }}" alt="" Mettre du css ou faire du css>  #}
-                        <img src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="" {# Mettre du css ou faire du css #}> 
-                    {% else %}
-                        <img src="/images/recipes/{{ recipe.category.name|replace({'entrées': 'entrees'}) }}.jpg" alt="">
-                    {% endif %}
-                    <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam odio ut incidunt nostrum, <br />
-                    quidem provident voluptas sed optio adipisci voluptates distinctio? Recusandae, vero libero! Ipsum, <br />
-                    facere nesciunt? Ipsum ad deserunt ullam, dolore rerum, fuga voluptatem quasi velit saepe, reprehenderit laborum?
-                    </p>
-                </div>
-            </section>
-        {% endfor %}
-    {% endif %}
-    <div class="pagination">
-        {{ knp_pagination_render(recipes) }}
+        <div class="pagination">
+            {{ knp_pagination_render(recipes) }}
+        </div>
     </div>
-</div>
+    
 {% endblock %}

@@ -4,31 +4,14 @@
 
 {% block body %}
 
-<div class="container mt-4">
-    <h1>Les {{ name }}</h1> 
+    <div class="container category">
+        <h1 class="title-center">Les {{ name }}</h1> 
 
-    {% for recipe in recipes %}
-        <section>
-            <a href="{{ path('recipe_show', {'id': recipe.id}) }}"><h3>{{ recipe.name }}</h3></a>
-            <div class="content">
-                {% if recipe.filename %}
-                    {# <img src="/images/recipes/{{ recipe.filename }}" alt="" Mettre du css ou faire du css>  #}
-                    <img src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="" {# Mettre du css ou faire du css #}> 
-                {% else %}
-                    <img src="/images/recipes/{{ recipe.category.name|replace({'entrées': 'entrees'}) }}.jpg" alt="">
-                {% endif %}
-                <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam odio ut incidunt nostrum, <br />
-                quidem provident voluptas sed optio adipisci voluptates distinctio? Recusandae, vero libero! Ipsum, <br />
-                facere nesciunt? Ipsum ad deserunt ullam, dolore rerum, fuga voluptatem quasi velit saepe, reprehenderit laborum?
-                </p>
-            </div>
-        </section>
-    {% endfor %}
-
-
-    <div class="pagination">
-        {{ knp_pagination_render(recipes) }}
+        {{ include('recipe/_listRecipes.html.twig') }}
+        
+        <div class="pagination">
+            {{ knp_pagination_render(recipes) }}
+        </div>
     </div>
-</div>
+
 {% endblock %}
