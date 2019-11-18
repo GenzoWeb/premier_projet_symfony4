@@ -82,6 +82,8 @@ class RecipeController extends AbstractController
             6
         );
 
+                    dump($search);
+            dump($recipes);
         return $this->render('recipe/recipes.html.twig', [
             'recipes' => $recipes,
             'form'    => $form->createView(),
@@ -126,13 +128,9 @@ class RecipeController extends AbstractController
     public function category($name, PaginatorInterface $paginator, Request $request)
     {
         $search = new RecipeSearch();
-        dump($name);
 
         $form = $this->createForm(RecipeSearchType::class, $search);
         $form->handleRequest($request);
-
-        // $category = $this->categoryRepo->findBy(array('name' => $name));
-        // $recipes = $this->recipeRepo->findBy(array('category' => $category));
 
         $recipes = $paginator->paginate(
             $this->recipeRepo->findByCategory($name),

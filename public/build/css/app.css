@@ -19,7 +19,7 @@
 {
     width: 100%;
     height: 100px;
-    background-color: black;
+    background-color: #e53c37;
 }
 
 /* TOOLBAR SYMFONY */
@@ -101,7 +101,7 @@
     margin-right: 10px;
 }
 
-.image-list-recipes :hover
+.image-list-recipes:hover
 {
     opacity: 0.8;
 }
@@ -158,9 +158,109 @@
 
             /**************************************************** LOGIN ( login.html.twig ) ****************************************************/
 
-.login, .registration
+.login, .registration, .admin-home, .role-user, .edit-user
 {
     min-height: calc(100vh - 180px); /* footer de 100px pour le moment */
 }
 
+.login form, .registration form
+{
+    width: 350px;
+    margin: auto;
+}
+
             /************************************************** FIN LOGIN ( login.html.twig ) **************************************************/
+
+
+            /********************************************* MODIF ROLE USER ( edit.user.html.twig ) *********************************************/
+
+.form-edit-user {
+   width: 250px;
+   margin: auto;
+}
+
+.form-edit-user form{
+    display: flex; 
+}
+
+.form-edit-user select{
+    width: 200px !important;
+}
+
+.form-edit-user button{
+    margin-left: 10px;
+}
+
+            /******************************************* FIN MODIF ROLE USER ( edit.user.html.twig ) *******************************************/
+
+.title-adding-recipe
+{
+    margin-bottom: 0;
+    line-height: 38px;
+    color: white;
+    margin-left: 2px;
+}
+
+#recipe_recipeIngredients
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+    max-width: 968px;
+}
+
+.admin-add-title
+{
+    margin-left: 0px !important;
+    display: flex;
+    background-color: #EB6864;
+}
+
+#add_ingredient, #add_step
+{
+    margin-left: auto;
+    box-shadow: none;
+}
+
+.admin-step
+{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#recipe_steps textarea
+{
+    min-height: 120px;
+    width: 1000px;
+}
+
+.btn-add-recipe
+{
+    display: flex;
+}
+
+.btn-add-recipe .btn
+{
+    margin: auto;
+}
+
+.fa-times-circle
+{
+    font-size: 25px;
+    color: red;
+}
+
+.fa-times-circle:hover
+{
+    color: #EB6864;
+}
+
+.okii
+{
+    width: 110px;
+    text-align: center;
+    float: right;
+    margin-top: 80px;
+}

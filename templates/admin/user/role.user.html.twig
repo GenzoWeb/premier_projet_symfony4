@@ -4,8 +4,8 @@
 
 {% block body %}
 
-    <div class="container mt-4">
-        <h1>Gérer les rôles des utilisateurs</h1>
+    <div class="container mt-4 role-user">
+        <h1 class="title-center">Gérer les rôles des utilisateurs</h1>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -33,7 +33,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{{ path('admin.user.edit', {id: user.id}) }}" class="btn btn-danger">Modifier</a>  
+                            <a href="{{ path('admin.user.edit', {id: user.id}) }}" class="btn btn-primary">Modifier</a>  
                             {# <a href="" class="btn btn-danger">Modifier</a>   #}
                         </td>
                     </tr>

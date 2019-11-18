@@ -21,23 +21,23 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class , [
-                'label' => 'Nom de la recette'
+                'label' => 'Nom de la recette :'
             ])
             ->add('imageFile', FileType::class, [
                 'required' => false,
-                'label' => 'Image'
+                'label' => 'Image :'
             ])
             // ->add('createdAt')            
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
-                'label' => 'Catégorie'
+                'label' => 'Catégorie :'
             ])
             ->add('recipeIngredients', CollectionType::class, [
                 'entry_type' => RecipeIngredientType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false
+                'by_reference' => false,
             ])
             ->add('steps', CollectionType::class, [
                 'entry_type' => StepType::class,

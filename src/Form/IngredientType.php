@@ -15,9 +15,7 @@ class IngredientType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                  'label' => false
-            ])
-            // ->add('recipeIngredient')
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

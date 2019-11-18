@@ -17,7 +17,7 @@ class StepType extends AbstractType
             //     'label' => 'Numéro étape'
             // ])
             ->add('description', null, [
-                'label' => 'Description'
+                'label' => 'Description :'
             ])
             // ->add('steps')
         ;

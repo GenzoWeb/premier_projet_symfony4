@@ -4,8 +4,11 @@ namespace App\Controller\Admin;
 
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use App\Entity\RecipeSearch;
+use App\Form\RecipeSearchType;
 use App\Repository\RecipeRepository;
 use App\Repository\IngredientRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\RecipeIngredientRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -28,16 +31,27 @@ class AdminRecipeController extends AbstractController
     }
 
     /**
-     * @Route("/", name="admin.recipe.index")
+     * @Route("/recipes", name="admin.recipe.index")
      */
-    public function index()
+    public function index(PaginatorInterface $paginator, Request $request)
     {
-        $recipes = $this->recipeRepo->findAll();
+        // $recipes = $this->recipeRepo->findAll();
+        
+
+        $search = new RecipeSearch();
+        $form = $this->createForm(RecipeSearchType::class, $search);
+        $form->handleRequest($request);
+        
+        $recipes = $paginator->paginate(
+            $this->recipeRepo->findAllQuery($search),
+            $request->query->getInt('page', 1),
+            4
+        );
 
         return $this->render('admin/recipe/index.html.twig', [
-            'controller_name' => 'Isaline',
             'recipes' => $recipes,
-            'current_menu' => 'admin'
+            'current_menu' => 'admin',
+            'form'    => $form->createView()
         ]);
     }
 

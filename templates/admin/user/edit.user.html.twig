@@ -4,14 +4,16 @@
 
 {% block body %}
 
-    <div class="container mt-4">
-        <h1>Modifier l' utilisateur : {{ user.username }}</h1>
-        <form method="post" action="{{ path('admin.user.edit', {id: user.id}) }}" onsubmit="return confirm('Êtes vous vraiment sûr?')" class="mt-3">
-            <select class="form-control" name="roles">
-                <option>{{ choice1 }}</option>
-                <option>{{ choice2 }}</option>
-            </select>
-            <button class="btn btn-danger mt-3">Modifier</button>
-        </form>
+    <div class="container mt-4 edit-user">
+        <h1 class="title-center">Modifier l' utilisateur : {{ user.username }}</h1>
+        <div class="form-edit-user">
+            <form method="post" action="{{ path('admin.user.edit', {id: user.id}) }}" onsubmit="return confirm('Êtes vous vraiment sûr?')">
+                <select class="form-control" name="roles">
+                    <option>{{ choice1 }}</option>
+                    <option>{{ choice2 }}</option>
+                </select>
+                <button class="btn btn-primary">Modifier</button>
+            </form>
+        </div>
     </div>
 {% endblock %}

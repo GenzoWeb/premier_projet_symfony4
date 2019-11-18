@@ -16,10 +16,10 @@ class RecipeIngredientType extends AbstractType
         $builder
             // ->add('quantity', TextType::class)
             ->add('quantity', TextType::class, [
-                'label' => 'Quantité'
+                'label' => 'Quantité :'
             ])
             ->add('measured', null, [
-                'label' => 'Mesure'
+                'label' => 'Mesure :'
             ])
             // ->add('recipe', HiddenType::class)
             // ->add('ingredients')

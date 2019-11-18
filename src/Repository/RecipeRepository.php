@@ -40,7 +40,8 @@ class RecipeRepository extends ServiceEntityRepository
      */
     public function findAllQuery(RecipeSearch $search) : Query
     {
-        $query = $this->createQueryBuilder('r');   
+        $query = $this->createQueryBuilder('r')
+                ->orderBy('r.createdAt', 'DESC');
 
         if($search->getNameRecipe())
         {
@@ -65,6 +66,8 @@ class RecipeRepository extends ServiceEntityRepository
                 ->andWhere("c.id = :nameCategory")
                 ->setParameter('nameCategory', $search->getNameCategory());
         }
+
+        // $query = $query->orderBy('r.createdAt', 'DESC');
 
         return $query->getQuery();
     }
