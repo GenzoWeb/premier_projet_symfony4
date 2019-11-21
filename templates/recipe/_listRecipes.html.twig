@@ -5,9 +5,9 @@
             <div class="image-list-recipes">
                 <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
                     {% if recipe.filename %}
-                        <img class="miniature-img" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="" > 
+                        <img class="miniature-img" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" > 
                     {% else %}
-                        <img class="miniature-img" src="/images/recipes/{{ recipe.category.name | replace({'entrées': 'entrees' }) }}.jpg" alt="">
+                        <img class="miniature-img" src="/images/recipes/{{ recipe.category.name | replace({'entrées': 'entrees' }) }}.jpg" >
                     {% endif %}
                 </a>
             </div>

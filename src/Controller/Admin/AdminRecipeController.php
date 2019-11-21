@@ -14,6 +14,7 @@ use App\Repository\RecipeIngredientRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -58,7 +59,7 @@ class AdminRecipeController extends AbstractController
     /**
      * @Route("/recipe/create", name="admin.recipe.new")
      */
-    public function new(Request $request)
+    public function new(Request $request, ValidatorInterface $validator)
     {
         $recipe = new Recipe();
 
@@ -82,10 +83,13 @@ class AdminRecipeController extends AbstractController
             return $this->redirectToRoute('admin.recipe.index');
         }
 
+        $errors = $validator->validate($recipe);
+
         return $this->render('admin/recipe/new.html.twig', [
             'recipe' => $recipe,
             'form' => $form->createView(),
-            'current_menu' => 'admin'
+            'current_menu' => 'admin',
+            'errors' => $errors
         ]);
     }
 

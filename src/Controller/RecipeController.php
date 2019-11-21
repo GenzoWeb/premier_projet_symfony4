@@ -60,7 +60,6 @@ class RecipeController extends AbstractController
         $recipes = $this->recipeRepo->findLatest();
 
         return $this->render('recipe/index.html.twig', [
-            'controller_name' => 'Isaline',
             'recipes' => $recipes,
             'form'    => $form->createView()
         ]);
@@ -82,8 +81,6 @@ class RecipeController extends AbstractController
             6
         );
 
-                    dump($search);
-            dump($recipes);
         return $this->render('recipe/recipes.html.twig', [
             'recipes' => $recipes,
             'form'    => $form->createView(),
@@ -105,9 +102,10 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser()->getUserName();
+            $date = new \DateTime('NOW',new \DateTimeZone('Europe/Paris'));
             $comment->setRecipe($recipe)
                     ->setAuthor($user)
-                    ->setCreatedAt(new \DateTime());
+                    ->setCreatedAt($date);
                     
             $manager->persist($comment);
             $manager->flush();

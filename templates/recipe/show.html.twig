@@ -6,12 +6,12 @@
 
     <div class="container mt-4">
         <h1 class="title-center">{{ recipe.name }}</h1>
-        <div class= "container">
+        <div class="container">
             <div class="title-center">
             {% if recipe.filename %}
-                <img class="miniature-img" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="" > 
+                <img class="miniature-img" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" > 
                 {% else %}
-                <img class="miniature-img" src="/images/recipes/{{ recipe.category.name|replace({'entrées': 'entrees'}) }}.jpg" alt="">
+                <img class="miniature-img" src="/images/recipes/{{ recipe.category.name|replace({'entrées': 'entrees'}) }}.jpg" >
             {% endif %}
             </div>
             <h3>Ingrédients</h3>

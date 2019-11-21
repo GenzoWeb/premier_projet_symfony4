@@ -30,7 +30,8 @@
             <tbody>
                 {% for recipe in recipes %}
                     <tr>
-                        <td>{{ recipe.name }}</td>
+                        {# <td>{{ recipe.name }}</td> #}
+                        <td><a class="link-recipe-admin" href="{{ path('recipe_show', {'id': recipe.id}) }}">{{ recipe.name }}</a></td>
                         <td class="title-center">
                             <a href="{{ path('admin.recipe.edit', {id: recipe.id}) }}" class="btn btn-primary">Editer</a>
                             <form method="post" action="{{ path('admin.recipe.delete', {id: recipe.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiment sûr?')">

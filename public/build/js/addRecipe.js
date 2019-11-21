@@ -14,7 +14,7 @@ $(document).ready(function () {
     });
 
     if (index == 0) {
-        for (i = 0; i < 3; i++) { 
+        for (var i = 0; i < 3; i++) {
             addCategory($container);
         }
     } else {
@@ -43,14 +43,20 @@ $(document).ready(function () {
         $container1.append($prototype1);
         $("#recipe_recipeIngredients legend:contains('Ingredients')").html("Nom de l'ingrédient :");
         var $blockRIIndex = $('div#recipe_recipeIngredients_' + index);
-        $blockRIIndex.css({"margin": "0 17px"});
+        $blockRIIndex.addClass("block-ingredients");
+       
+
+        var $blockNameIngredient = $('div#recipe_recipeIngredients_' + index + '_ingredients').parent();
+        $blockNameIngredient.addClass("block-name-ingredient");
+        var $inputNameIngredient = $('div#recipe_recipeIngredients_' + index + '_ingredients').children();
+        $inputNameIngredient.addClass("input-name-ingredient");
 
         index++;
     }
 
     function addDeleteLink($prototype) {
-        var $deleteLink = $('<a href="#" title="Supprimer"><i class="fas fa-times-circle"></i></a>');
-        $prototype.append($deleteLink);
+        var $deleteLink = $('<i class="fas fa-times-circle" title="supprimer"></i>');
+        $prototype.append($deleteLink);   
 
         $deleteLink.click(function (e) {
             $prototype.remove();
@@ -75,7 +81,7 @@ $(document).ready(function () {
     });
 
     if (indexStep == 0) {
-        for (i = 0; i < 3; i++) { 
+        for (var i = 0; i < 3; i++) {
             addCategoryStep($containerStep);
         }
     } else {
@@ -94,13 +100,13 @@ $(document).ready(function () {
         addDeleteLinkStep($prototype);
         $containerStep.append($prototype);
         var $blockRSIndex = $('div#recipe_steps_' + indexStep);
-        $blockRSIndex.css({"float": "left"});
+        $blockRSIndex.css({"float":"left"});
 
         indexStep++;
     }
 
     function addDeleteLinkStep($prototype) {
-        var $deleteLink = $('<div class="okii"><a href="#" title="Supprimer"><i class="fas fa-times-circle"></i></a></div>');
+        var $deleteLink = $('<div class="deleteLinkStep"><i class="fas fa-times-circle" title="Supprimer"></i></div>');
         $prototype.append($deleteLink);
 
         $deleteLink.click(function (e) {

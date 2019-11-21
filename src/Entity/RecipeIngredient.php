@@ -21,11 +21,7 @@ class RecipeIngredient
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\Regex(
-     *     pattern="/[a-z]/",
-     *     match=false,
-     *     message="Veuillez rentrer un rentrer une valeur numérique ou par exemple 1/2"
-     * )
+     * 
      */
     private $quantity;
 

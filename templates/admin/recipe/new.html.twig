@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="container mt-4 mb-4">
+    <div class="container mt-4 mb-4 add-admin">
         <h1 class="title-center">Ajouter une recette</h1>
 
         {{ form_start(form) }}
@@ -24,7 +24,7 @@
                     <p class="title-adding-recipe">Ingrédients :</p>
                     <a href="#" id="add_ingredient" class="btn btn-primary">Ajouter un ingrédient</a>
                 </div>
-                <div>{{ form_widget(form.recipeIngredients) }}</div>
+                <div>{{ form_widget(form.recipeIngredients) }}</div> 
             </div>
             <div class="admin-block-add admin-step">
                 <div class="admin-add-title">

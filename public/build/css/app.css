@@ -26,9 +26,13 @@
 .sf-toolbar    
 {
     display: none !important;
-}
+} 
 
             /*************************************************** ACCUEIL ( index.html.twig ) ***************************************************/
+.logo:hover
+{
+    opacity: 0.5;
+}
 
 #menu-list
 {
@@ -193,6 +197,14 @@
 
             /******************************************* FIN MODIF ROLE USER ( edit.user.html.twig ) *******************************************/
 
+
+            /*************************************************** ADMIN ADD ( new.html.twig ) ***************************************************/
+
+.link-recipe-admin, .link-recipe-admin:hover
+{
+    color: black;
+}
+
 .title-adding-recipe
 {
     margin-bottom: 0;
@@ -203,12 +215,15 @@
 
 #recipe_recipeIngredients
 {
-    display: flex;
-    flex-wrap: wrap;
-    width: fit-content;
+    width: 825px; 
     margin: auto;
     text-align: center;
-    max-width: 968px;
+}
+
+#recipe_recipeIngredients .fa-times-circle
+{
+    float: right;
+    line-height: 100px;
 }
 
 .admin-add-title
@@ -250,6 +265,7 @@
 {
     font-size: 25px;
     color: red;
+    cursor: pointer;
 }
 
 .fa-times-circle:hover
@@ -257,10 +273,73 @@
     color: #EB6864;
 }
 
-.okii
+.deleteLinkStep
 {
     width: 110px;
     text-align: center;
     float: right;
     margin-top: 80px;
 }
+
+.block-name-ingredient
+{
+    margin-right: 0;
+}
+
+.block-name-ingredient div, .input-name-ingredient, .block-ingredients .form-control
+{
+    width: 250px;
+}
+
+.block-name-ingredient legend
+{
+    padding: 0;
+    margin-bottom: 8px;
+}
+
+.input-name-ingredient legend
+{
+    display: none;
+}
+
+.block-ingredients
+{
+    display: flex;
+    float: left;
+}
+
+.block-ingredients .form-group
+{
+    margin-right: 10px;
+}
+
+            /************************************************* FIN ADMIN ADD ( new.html.twig ) *************************************************/
+
+
+            /************************************************** ADMIN EDIT ( edit.html.twig ) **************************************************/
+
+.admin-edit .row
+{
+    margin-left: 0px !important;
+}
+
+.step textarea
+{
+    min-height: 120px;
+}
+
+#leg div{
+    margin-right: 10px;
+}
+
+#leg legend
+{
+    display: none;
+}
+
+.add-admin
+{
+    min-height: calc(100vh - 204px); /* footer de 100px pour le moment */
+}
+
+            /************************************************ FIN ADMIN EDIT ( edit.html.twig ) ************************************************/

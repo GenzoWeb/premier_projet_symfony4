@@ -5,7 +5,7 @@
 {% block body %}
 
     <section>
-        <img id="image-home" src="/images/recipes/home.jpg" alt="" >
+        <img id="image-home" src="/images/recipes/home.jpg" alt="aliments sur une table" >
         <div id="div-search">
             <div id="search-recipe">
                 {{ include('recipe/_searchRecipes.html.twig') }}
@@ -14,12 +14,6 @@
     </section>
 
     <section class="container mt-4">
-        {# {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-        #}
         <h1 class="title-center">Dernières recettes ajoutées</h1>
         {{ include('recipe/_listRecipes.html.twig') }}
     </section>

@@ -16,7 +16,8 @@ class RecipeIngredientType extends AbstractType
         $builder
             // ->add('quantity', TextType::class)
             ->add('quantity', TextType::class, [
-                'label' => 'Quantité :'
+                'label' => 'Quantité :',
+                // 'error_bubbling' => true
             ])
             ->add('measured', null, [
                 'label' => 'Mesure :'

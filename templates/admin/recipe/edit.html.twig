@@ -4,21 +4,42 @@
 
 {% block body %}
 
-<div class="container mt-4">
-    <h1>Modifier la recette</h1>
+<div class="container mt-4 admin-edit">
+    <h1 class="title-center">Modifier la recette</h1>
 
-    {{ include('admin/recipe/_form.html.twig', {form: form, button: 'Editer'}) }}
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-12">{{ form_row(form.name) }}</div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-md-4">{{ form_row(form.category) }}</div>
+                <div class="col-md-8">{{ form_row(form.imageFile) }}</div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h4 class="mb-4">Ingrédients</h4>
+            <div id="leg" class="row">
+                {% for ingredient in form.recipeIngredients %}
+                    <div class="">{{ form_widget(ingredient.quantity) }}</div>
+                    <div class="">{{ form_widget(ingredient.measured) }}</div>
+                    <div class="">{{ form_widget(ingredient.ingredients) }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-10 mb-4">
+            <h4 class="mb-4">Etapes</h4>
+            {% for step in form.steps %}
+                <div class="row mt-2">
+                    <h6>Etape {{ loop.index }}</h6>
+                    <div class="step col-md-11">{{ form_widget(step.description) }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="title-center">
+            <button class="btn btn-primary">Editer</button>
+        </div>
+    {{ form_end(form) }}
 
 </div>
-{% endblock %}
-
-
-{# A METTRE DANS LE CSS POUR QU'IL LE FASSE AVANT LE CHARGEMENT DE LA PAGE #}
-{% block javascripts %}
-    <script>
-        $(document).ready(function () {
-            //$("#leg legend:contains('0')").html("");
-            $("#leg legend").css("display","none");
-        })
-    </script>
 {% endblock %}
