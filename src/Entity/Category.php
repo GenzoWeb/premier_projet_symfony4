@@ -72,7 +72,7 @@ class Category
     {
         if ($this->recipes->contains($recipe)) {
             $this->recipes->removeElement($recipe);
-            // set the owning side to null (unless already changed)
+            
             if ($recipe->getCategory() === $this) {
                 $recipe->setCategory(null);
             }

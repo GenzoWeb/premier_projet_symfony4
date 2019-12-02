@@ -36,9 +36,6 @@ class AdminRecipeController extends AbstractController
      */
     public function index(PaginatorInterface $paginator, Request $request)
     {
-        // $recipes = $this->recipeRepo->findAll();
-        
-
         $search = new RecipeSearch();
         $form = $this->createForm(RecipeSearchType::class, $search);
         $form->handleRequest($request);
@@ -62,9 +59,7 @@ class AdminRecipeController extends AbstractController
     public function new(Request $request, ValidatorInterface $validator)
     {
         $recipe = new Recipe();
-
         $form = $this->createForm(RecipeType::class, $recipe);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -80,6 +75,7 @@ class AdminRecipeController extends AbstractController
             $this->em->persist($recipe);
             $this->em->flush();
             $this->addflash('success', 'Recette ajoutée avec succés');
+
             return $this->redirectToRoute('admin.recipe.index');
         }
 
@@ -124,7 +120,6 @@ class AdminRecipeController extends AbstractController
     public function edit(Recipe $recipe, Request $request)
     {
         $form = $this->createForm(RecipeType::class, $recipe);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -132,6 +127,7 @@ class AdminRecipeController extends AbstractController
             $recipe->setUpdatedAt(new \DateTime());
             $this->em->flush();
             $this->addflash('success', 'Recette modifiée avec succés');
+            
             return $this->redirectToRoute('admin.recipe.index');
         }
         

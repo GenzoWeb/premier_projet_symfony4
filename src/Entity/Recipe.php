@@ -29,12 +29,6 @@ class Recipe{
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     *      min=3, 
-     *      max=255,
-     *      minMessage = "Le nom de la recette est trop court",
-     *      maxMessage = "Le nom de la recette est trop long"
-     * )
      */
     private $name;
 

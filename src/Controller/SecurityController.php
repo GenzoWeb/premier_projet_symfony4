@@ -37,7 +37,7 @@ class SecurityController extends AbstractController
 
         // Récupération l' URL précédent
         $referer = $request->headers->get('referer');
-        // Récupération l' URL courante ici (Login)
+
         $urlCurrent = "http://" . $request->headers->get('host') . "/" . $request->get('_route');
 
         $compareUrl = 1;
@@ -88,7 +88,6 @@ class SecurityController extends AbstractController
 
             $this->get('security.token_storage')->setToken($token);
             $this->get('session')->set('_security_main', serialize($token));
-
             $this->addflash('success', 'Bienvenue ' . $user->getUsername());
 
             return $this->redirectToRoute('home');

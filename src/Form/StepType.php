@@ -13,13 +13,9 @@ class StepType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('numberStep', TextType::class, [
-            //     'label' => 'Numéro étape'
-            // ])
             ->add('description', null, [
                 'label' => 'Description :'
             ])
-            // ->add('steps')
         ;
     }
 

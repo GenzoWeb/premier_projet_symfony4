@@ -4,18 +4,22 @@
 
 {% block body %}
 
-    <section>
+    <div>
         <img id="image-home" src="/images/recipes/home.jpg" alt="aliments sur une table" >
         <div id="div-search">
             <div id="search-recipe">
                 {{ include('recipe/_searchRecipes.html.twig') }}
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="container mt-4">
-        <h1 class="title-center">Dernières recettes ajoutées</h1>
+    <div class="container mt-4">
+        <h1 class="text-center">Dernières recettes ajoutées</h1>
         {{ include('recipe/_listRecipes.html.twig') }}
-    </section>
+    </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/js/searchTranslate.js') }}"></script>
 {% endblock %}

@@ -67,8 +67,6 @@ class RecipeRepository extends ServiceEntityRepository
                 ->setParameter('nameCategory', $search->getNameCategory());
         }
 
-        // $query = $query->orderBy('r.createdAt', 'DESC');
-
         return $query->getQuery();
     }
 

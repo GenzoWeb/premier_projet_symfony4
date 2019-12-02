@@ -5,7 +5,7 @@
 {% block body %}
 
     <div class="container mt-4 edit-user">
-        <h1 class="title-center">Modifier l' utilisateur : {{ user.username }}</h1>
+        <h1 class="text-center">Modifier l' utilisateur : {{ user.username }}</h1>
         <div class="form-edit-user">
             <form method="post" action="{{ path('admin.user.edit', {id: user.id}) }}" onsubmit="return confirm('Êtes vous vraiment sûr?')">
                 <select class="form-control" name="roles">

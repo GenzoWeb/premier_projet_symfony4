@@ -94,8 +94,6 @@ class RecipeController extends AbstractController
     public function show(Recipe $recipe, Request $request, ObjectManager $manager)
     {
         $recipes = $this->recipeRepo->findById($recipe);
-        	
-        //Formulaire pour les commentaires
         $comment= new Comment();
 
         $form = $this->createForm(CommentType::class, $comment);
@@ -126,7 +124,6 @@ class RecipeController extends AbstractController
     public function category($name, PaginatorInterface $paginator, Request $request)
     {
         $search = new RecipeSearch();
-
         $form = $this->createForm(RecipeSearchType::class, $search);
         $form->handleRequest($request);
 

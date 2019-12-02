@@ -26,8 +26,7 @@ class RecipeType extends AbstractType
             ->add('imageFile', FileType::class, [
                 'required' => false,
                 'label' => 'Image :'
-            ])
-            // ->add('createdAt')            
+            ])           
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
@@ -41,7 +40,6 @@ class RecipeType extends AbstractType
             ])
             ->add('steps', CollectionType::class, [
                 'entry_type' => StepType::class,
-                // 'entry_options' => array('label' => false),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false
