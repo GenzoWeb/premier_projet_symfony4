@@ -8,8 +8,8 @@
 {
     width: 100%;
     height: 70px;
-    background-color: #e53c37;
-
+    background-color: #EB6864;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .foot-left
@@ -28,12 +28,12 @@
 
 .foot-right a
 {
-    color: black;
+    color: #f5b4b2;
 }
 
 .foot-right a:hover
 {
-    color: black;
+    color: #f5b4b2;
     opacity: 0.6;
     text-decoration: none;
 }
@@ -43,11 +43,22 @@
     margin-bottom: 20px;
 }
 
+.sf-toolbar
+{
+    display: none !important;
+}
+
 
             /*************************************************** ACCUEIL ( index.html.twig ) ***************************************************/
+
+.logo
+{
+    color: #f5b4b2 !important;
+}
+
 .logo:hover
 {
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 #menu-list
@@ -82,10 +93,15 @@
     margin-right: 0;
 }
 
-#search-recipe .button-search, .container-search .button-search
+#search-recipe .button-search
 {
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.button-search button, .login .btn-primary, .registration .btn-primary
+{
+    color:  #f5b4b2 !important;
 }
 
 /***** LISTE DES RECETTES *****/
@@ -153,7 +169,7 @@
 
 .category
 {
-    min-height: calc(100vh - 139px); 
+    min-height: calc(100vh - 163px); 
 }
 
             /*********************************************** FIN CATEGORIE ( category.html.twig ) **********************************************/
@@ -180,6 +196,7 @@
     width: 350px;
     margin: auto;
 }
+
 
             /************************************************** FIN LOGIN ( login.html.twig ) **************************************************/
 
@@ -423,7 +440,7 @@
 
 @media all and (max-width: 799px)
 {
-    #search-recipe #nameRecipe, #search-recipe #ingredient, #search-recipe #nameCategory 
+    #search-recipe #nameRecipe, #search-recipe #ingredient, #search-recipe #nameCategory
     {
         font-size: 7px !important;
     }

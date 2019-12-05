@@ -10,9 +10,9 @@
         </div>
     </div>
 
-    <div class="container recipes">
+    <div class="container recipes mt-4">
         {% if not recipes.items %}
-            <p class="text-center mt-4">Il n'y a pas de recette qui correspond à votre recherche</p>
+            <p class="text-center">Il n'y a pas de recette qui correspond à votre recherche</p>
         {% else %}
             <h1 class="text-center">Recette{% if recipes.items| length > 1 %}s{% endif %}</h1>
             {{ include('recipe/_listRecipes.html.twig') }}
