@@ -3,6 +3,6 @@ vich_uploader:
 
     mappings:
        recipe_image:
-           uri_prefix: /images/recipes
+           uri_prefix: '%app.path.recipe_image%'
            upload_destination: '%kernel.project_dir%/public/images/recipes'
            namer: Vich\UploaderBundle\Naming\UniqidNamer
