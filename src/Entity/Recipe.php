@@ -42,7 +42,7 @@ class Recipe{
      * @var File|null
      * @Vich\UploadableField(mapping="recipe_image", fileNameProperty="filename")
      * @Assert\Image(
-     *      mimeTypes={"image/jpeg"}
+     *      mimeTypes={"image/jpeg", "image/png", "image/jpg",}
      * )
      */
     private $imageFile;

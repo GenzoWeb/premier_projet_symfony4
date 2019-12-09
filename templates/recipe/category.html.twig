@@ -5,13 +5,17 @@
 {% block body %}
 
     <div class="container category mt-4">
-        <h1 class="text-center">Les {{ name }}</h1> 
+        {% if not recipes.items %}
+            <p class="text-center">Il n'y a pas de recette qui correspond à votre recherche</p>
+        {% else %}
+            <h1 class="text-center">Les {{ name }}</h1> 
 
-        {{ include('recipe/_listRecipes.html.twig') }}
-        
-        <div class="pagination">
-            {{ knp_pagination_render(recipes) }}
-        </div>
+            {{ include('recipe/_listRecipes.html.twig') }}
+            
+            <div class="pagination">
+                {{ knp_pagination_render(recipes) }}
+            </div>
+        {% endif %}
     </div>
 
 {% endblock %}

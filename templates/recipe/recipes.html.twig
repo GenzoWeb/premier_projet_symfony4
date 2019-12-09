@@ -16,11 +16,11 @@
         {% else %}
             <h1 class="text-center">Recette{% if recipes.items| length > 1 %}s{% endif %}</h1>
             {{ include('recipe/_listRecipes.html.twig') }}
+        
+            <div class="pagination">
+                {{ knp_pagination_render(recipes) }}
+            </div>
         {% endif %}
-
-        <div class="pagination">
-            {{ knp_pagination_render(recipes) }}
-        </div>
     </div>
     
 {% endblock %}

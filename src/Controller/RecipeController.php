@@ -119,7 +119,9 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/category/{name}", name="recipes_category")
+     * @Route("/category/{name}", name="recipes_category",
+     *  requirements={"name": "entrées|plats|desserts"}
+     * )
     */
     public function category($name, PaginatorInterface $paginator, Request $request)
     {

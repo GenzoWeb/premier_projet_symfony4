@@ -186,7 +186,7 @@
 
             /**************************************************** LOGIN ( login.html.twig ) ****************************************************/
 
-.login, .registration, .admin-home, .role-user, .edit-user
+.login, .registration, .admin-home, .role-user, .edit-user, .error-page
 {
     min-height: calc(100vh - 163px); 
 }
