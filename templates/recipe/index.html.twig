@@ -5,7 +5,7 @@
 {% block body %}
 
     <div>
-        <img id="image-home" src="/images/recipes/home.jpg" alt="aliments sur une table" >
+        <img id="image-home" src="{{ asset('images/recipes/home.jpg') }}" alt="aliments sur une table" >
         <div id="div-search">
             
                 {{ include('recipe/_searchRecipes.html.twig') }}

@@ -7,7 +7,7 @@
                     {% if recipe.filename %}
                         <img class="miniature-img" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" > 
                     {% else %}
-                        <img class="miniature-img" src="/images/recipes/{{ recipe.category.name | replace({'entrées': 'entrees' }) }}.jpg" >
+                        <img class="miniature-img" src="{{ asset('images/recipes/' ~ recipe.category.name | replace({'entrées': 'entrees' }) ~ '.jpg') }}" >
                     {% endif %}
                 </a>
             </div>

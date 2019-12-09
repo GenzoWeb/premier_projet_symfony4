@@ -1,0 +1,2 @@
+#!/bin/sh
+rsync -av ./ u92714323@home725911449.1and1-data.host:~/mesrecettes --include=public/build --include=public/.htaccess --exclude-from=.gitignore --exclude=".*"
