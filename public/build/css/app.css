@@ -51,6 +51,11 @@
 
             /*************************************************** ACCUEIL ( index.html.twig ) ***************************************************/
 
+.homepage
+{
+    min-height: calc(100vh - 139px); 
+}
+
 .logo
 {
     color: #f5b4b2 !important;
@@ -165,15 +170,6 @@
             /******************************************** FIN LISTE RECETTES ( recipes.html.twig ) *********************************************/
 
 
-            /************************************************* CATEGORIE ( category.html.twig ) ************************************************/
-
-.category
-{
-    min-height: calc(100vh - 163px); 
-}
-
-            /*********************************************** FIN CATEGORIE ( category.html.twig ) **********************************************/
-
             /**************************************************** RECETTE ( show.html.twig ) ***************************************************/
 
 .comments
@@ -186,7 +182,7 @@
 
             /**************************************************** LOGIN ( login.html.twig ) ****************************************************/
 
-.login, .registration, .admin-home, .role-user, .edit-user, .error-page
+.login, .registration, .admin-home, .role-user, .edit-user, .error-page, .category, .show-page
 {
     min-height: calc(100vh - 163px); 
 }

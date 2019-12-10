@@ -4,13 +4,13 @@
 
 {% block body %}
 
-    <div class="container mt-4">
+    <div class="container mt-4 show-page">
         <h1 class="text-center title">{{ recipe.name }}</h1>
         <div class="container">
             <div class="text-center">
                 {% if recipe.filename %}
-                    <img class="miniature-img" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" > 
-                    {% else %}
+                    <img class="miniature-img" src="{{ asset('images/recipes/' ~ recipe.filename) }}" > 
+                {% else %}
                     <img class="miniature-img" src="{{ asset('images/recipes/' ~ recipe.category.name | replace({'entrées': 'entrees' }) ~ '.jpg') }}" >
                 {% endif %}
             </div>

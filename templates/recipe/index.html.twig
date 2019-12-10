@@ -3,19 +3,18 @@
 {% block title %}Mes recettes{% endblock %}
 
 {% block body %}
-
-    <div>
-        <img id="image-home" src="{{ asset('images/recipes/home.jpg') }}" alt="aliments sur une table" >
-        <div id="div-search">
-            
+    <div class="homepage">
+        <div>
+            <img id="image-home" src="{{ asset('images/recipes/home.jpg') }}" alt="aliments sur une table" >
+            <div id="div-search">
                 {{ include('recipe/_searchRecipes.html.twig') }}
-            
+            </div>
         </div>
-    </div>
 
-    <div class="container mt-4">
-        <h1 class="text-center">Dernières recettes ajoutées</h1>
-        {{ include('recipe/_listRecipes.html.twig') }}
+        <div class="container mt-4">
+            <h1 class="text-center">Dernières recettes ajoutées</h1>
+            {{ include('recipe/_listRecipes.html.twig') }}
+        </div>
     </div>
 
 {% endblock %}
